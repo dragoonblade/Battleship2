@@ -48,7 +48,49 @@ namespace Battleship
                 prob[i, j + 2]--;
                 prob[i, j - 2]--;
             }
-            else if ((i == 1 && j > 1 && j < 8) || (i == 8 && j > 1 && j < 8))
+            else if (i == 1 && j > 1 && j < 8) 
+            {
+                prob[i, j] = 0;
+                prob[i - 1, j]--;
+                prob[i + 1, j] -= 2;
+                prob[i, j + 1] -= 2;
+                prob[i, j - 1] -= 2;
+                prob[i + 2, j]--;
+                prob[i, j + 2]--;
+                prob[i, j - 2]--;
+            }
+            else if (i == 8 && j > 1 && j < 8)
+            {
+                prob[i, j] = 0;
+                prob[i + 1, j]--;
+                prob[i - 1, j] -= 2;
+                prob[i, j + 1] -= 2;
+                prob[i, j - 1] -= 2;
+                prob[i - 2, j]--;
+                prob[i, j + 2]--;
+                prob[i, j - 2]--;
+            }
+            else if (i == 0 && j > 1 && j < 8) 
+            {
+                prob[i, j] = 0;
+                prob[i + 1, j]--;
+                prob[i, j + 1] -= 2;
+                prob[i, j - 1] -= 2;
+                prob[i + 2, j]--;
+                prob[i, j + 2]--;
+                prob[i, j - 2]--;
+            }
+            else if  (i == 9 && j > 1 && j < 8)
+            {
+                prob[i, j] = 0;
+                prob[i - 1, j]--;
+                prob[i, j + 1] -= 2;
+                prob[i, j - 1] -= 2;
+                prob[i - 2, j]--;
+                prob[i, j + 2]--;
+                prob[i, j - 2]--;
+            }
+            else if (j == 1 && i > 1 && i < 8)
             {
                 prob[i, j] = 0;
                 prob[i - 1, j] -= 2;
@@ -59,7 +101,18 @@ namespace Battleship
                 prob[i + 2, j]--;
                 prob[i, j + 2]--;
             }
-            else if ((i == 0 && j > 1 && j < 8) || (i == 9 && j > 1 && j < 8))
+            else if (j == 8 && i > 1 && i < 8)
+            {
+                prob[i, j] = 0;
+                prob[i - 1, j] -= 2;
+                prob[i + 1, j] -= 2;
+                prob[i, j - 1] -= 2;
+                prob[i, j + 1]--;
+                prob[i - 2, j]--;
+                prob[i + 2, j]--;
+                prob[i, j - 2]--;
+            }
+            else if (j == 0 && i > 1 && i < 8)
             {
                 prob[i, j] = 0;
                 prob[i - 1, j] -= 2;
@@ -69,27 +122,104 @@ namespace Battleship
                 prob[i + 2, j]--;
                 prob[i, j + 2]--;
             }
-            else if ((j == 1 && i > 1 && i < 8) || (j == 8 && i > 1 && i < 8))
+            else if (j == 9 && i > 1 && i < 8)
+            {
+                prob[i, j] = 0;
+                prob[i - 1, j] -= 2;
+                prob[i + 1, j] -= 2;
+                prob[i, j - 1]--;
+                prob[i - 2, j]--;
+                prob[i + 2, j]--;
+                prob[i, j - 2]--;
+            }
+                //check
+            else if (j == 1 && i == 1)
             {
                 prob[i, j] = 0;
                 prob[i - 1, j]--;
                 prob[i + 1, j] -= 2;
                 prob[i, j + 1] -= 2;
-                prob[i, j - 1] -= 2;
-                prob[i - 2, j]--;
+                prob[i, j - 1]--;
                 prob[i + 2, j]--;
                 prob[i, j + 2]--;
-                prob[i, j - 2]--;
             }
-            else if ((i == 0 && j > 1 && j < 8) || (i == 9 && j > 1 && j < 8))
+            else if (j == 8 && i == 1)
             {
                 prob[i, j] = 0;
-                prob[i - 1, j] -= 2;
+                prob[i - 1, j]--;
                 prob[i + 1, j] -= 2;
+                prob[i, j - 1] -= 2;
+                prob[i, j + 1]--;
+                prob[i + 2, j]--;
+                prob[i, j - 2]--;
+            }
+            else if (i == 8 && j == 1)
+            {
+                prob[i, j] = 0;
+                prob[i + 1, j]--;
+                prob[i - 1, j] -= 2;
+                prob[i, j + 1] -= 2;
+                prob[i, j - 1]--;
+                prob[i - 2, j]--;
+                prob[i, j + 2]--;
+            }
+            else if (i == 8 && j == 8)
+            {
+                prob[i, j] = 0;
+                prob[i + 1, j]--;
+                prob[i - 1, j] -= 2;
+                prob[i, j - 1] -= 2;
                 prob[i, j + 1]--;
                 prob[i - 2, j]--;
-                prob[i + 2, j]--;
+                prob[i, j - 2]--;
+            }
+            else if (i == 0 && j == 1)
+            {
+                prob[i, j] = 0;
+                prob[i + 1, j]--;
+                prob[i, j - 1]--;
+                prob[i, j + 1] -= 2;
                 prob[i, j + 2]--;
+            }
+            else if (i == 0 && j == 8)
+            {
+                prob[i, j] = 0;
+                prob[i + 1, j]--;
+                prob[i, j - 1] -= 2;
+                prob[i, j + 1]--;
+                prob[i, j - 2]--;
+            }
+            else if (i == 1 && j == 9)
+            {
+                prob[i, j] = 0;
+                prob[i + 1, j] -= 2;
+                prob[i - 1, j]--;
+                prob[i, j - 1]--;
+                prob[i, j - 2]--;
+            }
+            else if (i == 8 && j == 9)
+            {
+                prob[i, j] = 0;
+                prob[i + 1, j]--;
+                prob[i - 1, j] -= 2;
+                prob[i, j - 1]--;
+                prob[i, j - 2]--;
+            }
+            else if (i == 9 && j == 8)
+            {
+                prob[i, j] = 0;
+                prob[i - 1, j]--;
+                prob[i, j - 1]--;
+                prob[i, j + 1]--;
+                prob[i, j - 2]--;
+            }
+            else if (i == 9 && j == 1)
+            {
+                prob[i, j] = 0;
+                prob[i + 1, j]--;
+                prob[i - 1, j] -= 2;
+                prob[i, j - 1]--;
+                prob[i, j - 2]--;
             }
         }
 
