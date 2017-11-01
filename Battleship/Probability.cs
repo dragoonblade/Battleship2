@@ -19,56 +19,46 @@ namespace Battleship
                        {2,3,4,4,4,4,4,4,3,2}};
         float[] p = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        public void calc(int[,] grid, int i, int j)
-        {
-            if (grid[i, j] == 0)
-                miss(i, j);
-            else
-            {
-
-            }
-        }
-
         public void miss(int i, int j)
         {
             prob[i, j] = 0;
 
-            if (i - 2 > -1)
+            if (i  > 1)
             {
                 prob[i - 2, j] -= 1;
                 prob[i - 1, j] -= 2;
             }
-            else
+            else (i  > 0)
             {
                 prob[i - 1, j] -= 1;
             }
 
-            if (i + 2 < 10)
+            if (i < 8)
             {
                 prob[i + 2, j] -= 1;
                 prob[i + 1, j] -= 2;
             }
-            else
+            else (j < 9)
             {
                 prob[i + 1, j] -= 1;
             }
 
-            if (j - 2 > -1)
+            if (j > 1)
             {
                 prob[i, j - 2] -= 1;
                 prob[i, j - 1] -= 2;
             }
-            else
+            else (j  > 0)
             {
                 prob[i, j - 1] -= 1;
             }
 
-            if (j + 2 > 10)
+            if (j < 8)
             {
                 prob[i, j + 2] -= 1;
                 prob[i, j + 1] -= 2;
             }
-            else
+            else (i < 9)
             {
                 prob[i, j + 1] -= 1;
             }
