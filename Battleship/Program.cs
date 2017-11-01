@@ -32,7 +32,13 @@ namespace Battleship
                 Console.WriteLine();
             }
 
-            s.calc(grid,4, 5);
+            if (grid[4, 5] == 0)6
+                s.miss(i, j);
+            else
+            {
+
+            }
+            
             Console.WriteLine("After Miss");
             for (int i = 0; i < 10; i++)
             {
