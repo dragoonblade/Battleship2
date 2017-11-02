@@ -38,79 +38,148 @@ namespace Battleship
                 }
                 Console.WriteLine();
             }
-            while(h<n){
-                i = tx;
-                j = ty;
-                calculateProbAround(i,j); //calculates probabilty around recently hit block
-                //select next target based on largest probability around recent target
-                if ((i > 1 && i < 8 && prob[i - 1, j] > prob[i + 1, j]) || i == 8)
-                {
-                    if ((j > 1 && j < 8 && prob[i, j - 1] > prob[i, j + 1]) || j == 8)
+            while(h<n)
+            {
+                if (sea[i, j] == 1)
+                { 
+                    Console.WriteLine("Enter");
+                    if (tx != i)
                     {
-                        if (prob[i - 1, j] > prob[i, j - 1])
+                        j = ty;
+                        if (tx > i)
                         {
-                            tx = i - 1;
-                            ty = j;
+                            i = tx;
+                            tx++;
                         }
                         else
                         {
-                            tx = i;
-                            ty = j - 1;
+                            i = tx;
+                            tx--;
                         }
                     }
                     else
                     {
-                        if (prob[i - 1, j] > prob[i, j + 1])
+                        i = tx;
+                        if (ty > j)
                         {
-                            tx = i - 1;
-                            ty = j;
+                            j = ty;
+                            ty++;
                         }
                         else
                         {
-                            tx = i;
-                            ty = j + 1;
+                            j = ty;
+                            ty--;
                         }
                     }
                 }
+
                 else
                 {
-                    if ((j > 1 && j < 8 && prob[i, j - 1] > prob[i, j + 1]) || j == 8)
+                    calculateProbAround(i, j); //calculates probabilty around recently hit block
+                    //select next target based on largest probability around recent target
+                    if ((i > 1 && i < 8 && prob[i - 1, j] > prob[i + 1, j]) || i == 8)
                     {
-                        if (prob[i + 1, j] > prob[i, j - 1])
+                        if ((j > 1 && j < 8 && prob[i, j - 1] > prob[i, j + 1]) || j == 8)
                         {
-                            tx = i + 1;
-                            ty = j;
+                            if (prob[i - 1, j] > prob[i, j - 1])
+                            {
+                                tx = i - 1;
+                                ty = j;
+                            }
+                            else
+                            {
+                                tx = i;
+                                ty = j - 1;
+                            }
                         }
                         else
                         {
-                            tx = i;
-                            ty = j - 1;
+                            if (prob[i - 1, j] > prob[i, j + 1])
+                            {
+                                tx = i - 1;
+                                ty = j;
+                            }
+                            else
+                            {
+                                tx = i;
+                                ty = j + 1;
+                            }
                         }
                     }
                     else
                     {
-                        if (prob[i + 1, j] > prob[i, j + 1])
+                        if ((j > 1 && j < 8 && prob[i, j - 1] > prob[i, j + 1]) || j == 8)
                         {
-                            tx = i + 1;
-                            ty = j;
+                            if (prob[i + 1, j] > prob[i, j - 1])
+                            {
+                                tx = i + 1;
+                                ty = j;
+                            }
+                            else
+                            {
+                                tx = i;
+                                ty = j - 1;
+                            }
                         }
                         else
                         {
-                            tx = i;
-                            ty = j + 1;
+                            if (prob[i + 1, j] > prob[i, j + 1])
+                            {
+                                tx = i + 1;
+                                ty = j;
+                            }
+                            else
+                            {
+                                tx = i;
+                                ty = j + 1;
+                            }
                         }
                     }
+
+                    if (sea[i - 1, j] != -1 && sea[i + 1, j] != -1 && sea[i, j + 1] != -1 && sea[i, j - 1] != -1)
+                    {
+                        tx = i;
+                        ty = j;
+                        Console.WriteLine("tx = " + tx);
+                        Console.WriteLine("ty = " + ty);
+                        sea[i, j] = 1;
+                        if (sea[i - 1, j] == 1)
+                        {
+                            while (sea[tx, ty] != -1)
+                            {
+                                tx--;
+                            }
+                        }
+                        if (sea[i + 1, j] == 1)
+                        {
+                            while (sea[tx, ty] != -1)
+                            {
+                                tx++;
+                            }
+                        }
+                        if (sea[i, j - 1] == -1)
+                        {
+                            while (sea[tx, ty] != 1)
+                            {
+                                ty--;
+                            }
+                        }
+                        if (sea[i, j + 1] == -1)
+                        {
+                            while (sea[tx, ty] != 1)
+                            {
+                                ty++;
+                            }
+                        }
+                    } 
                 }
-
-
-                Console.WriteLine("tx= " + tx);
-                Console.WriteLine("ty= " + ty);
 
                 if (grid[tx, ty] == n)
                 {
+                    Console.WriteLine("HIT!!!");
                     sea[tx, ty] = grid[tx, ty];
+                    sea[i, j] = 1;
                     h++;
-                    Console.WriteLine("Hits = " + h);
                 }
                 else
                 {
@@ -124,11 +193,14 @@ namespace Battleship
                 {
                     for (int b = 0; b < 10; b++)
                     {
-                        Console.Write(sea[a, b] + " ");
+                        Console.Write(sea[a, b] + "\t");
                     }
                     Console.WriteLine();
                 }
+                Console.WriteLine("tx = "+tx);
+                Console.WriteLine("ty = "+ty);
             }
+            sea[tx, ty] = 1;
             if (h == 2)
                 Console.WriteLine("2 destroyed");
             else if (h == 3)
@@ -301,7 +373,7 @@ namespace Battleship
             {
                 for (int b = 0; b < 10; b++)
                 {
-                    Console.Write(prob[a, b] + " ");
+                    Console.Write(prob[a, b] + "\t");
                 }
                 Console.WriteLine();
             }
