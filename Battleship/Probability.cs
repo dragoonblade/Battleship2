@@ -28,7 +28,7 @@ namespace Battleship
                 prob[i - 2, j] -= 1;
                 prob[i - 1, j] -= 2;
             }
-            else (i  > 0)
+            else if (i  > 0)
             {
                 prob[i - 1, j] -= 1;
             }
@@ -38,7 +38,7 @@ namespace Battleship
                 prob[i + 2, j] -= 1;
                 prob[i + 1, j] -= 2;
             }
-            else (j < 9)
+            else if (j < 9)
             {
                 prob[i + 1, j] -= 1;
             }
@@ -48,7 +48,7 @@ namespace Battleship
                 prob[i, j - 2] -= 1;
                 prob[i, j - 1] -= 2;
             }
-            else (j  > 0)
+            else if (j  > 0)
             {
                 prob[i, j - 1] -= 1;
             }
@@ -58,7 +58,7 @@ namespace Battleship
                 prob[i, j + 2] -= 1;
                 prob[i, j + 1] -= 2;
             }
-            else (i < 9)
+            else if (i < 9)
             {
                 prob[i, j + 1] -= 1;
             }

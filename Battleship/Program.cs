@@ -21,32 +21,38 @@ namespace Battleship
                            {0,0,0,0,0,0,3,3,3,0},
                            {0,0,0,0,0,0,0,0,0,0}};
 
-            Probability s = new Probability();
+            Probability p = new Probability();
+            Target t = new Target();
+            Console.Write("Enter the x Coordinate: ");
+            int x = int.Parse(Console.ReadLine());
+            Console.Write("Enter the y Coordinate: ");
+            int y = int.Parse(Console.ReadLine());
 
-            for (int i = 0; i < 10; i++)
+            if (grid[x, y] == 0)
             {
-                for (int j = 0; j < 10; j++)
+                for (int i = 0; i < 10; i++)
                 {
-                    Console.Write(s.prob[i, j] + " ");
+                    for (int j = 0; j < 10; j++)
+                    {
+                        Console.Write(p.prob[i, j] + " ");
+                    }
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
+                p.miss(x, y);
+                t.sea[x, y] = 0;
+                Console.WriteLine("After Miss");
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        Console.Write(p.prob[i, j] + " ");
+                    }
+                    Console.WriteLine();
+                }
             }
-
-            if (grid[4, 5] == 0)6
-                s.miss(i, j);
             else
             {
-
-            }
-            
-            Console.WriteLine("After Miss");
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    Console.Write(s.prob[i, j] + " ");
-                }
-                Console.WriteLine();
+                t.calc(grid, x, y);
             }
         }
     }
