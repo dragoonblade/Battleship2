@@ -43,9 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Destroyer.cs" />
     <Compile Include="Finder.cs" />
-    <Compile Include="Picker.cs" />
     <Compile Include="Probability.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
