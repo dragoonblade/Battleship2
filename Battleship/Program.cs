@@ -34,7 +34,7 @@ namespace Battleship
                 {
                     for (int j = 0; j < 10; j++)
                     {
-                        Console.Write(p.prob[i, j] + " ");
+                        Console.Write(p.prob[i, j] + "\t");
                     }
                     Console.WriteLine();
                 }
@@ -45,7 +45,7 @@ namespace Battleship
                 {
                     for (int j = 0; j < 10; j++)
                     {
-                        Console.Write(p.prob[i, j] + " ");
+                        Console.Write(p.prob[i, j] + "\t");
                     }
                     Console.WriteLine();
                 }

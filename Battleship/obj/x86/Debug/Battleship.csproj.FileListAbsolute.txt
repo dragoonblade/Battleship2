@@ -2,3 +2,4 @@ C:\Users\student\Documents\Visual Studio 2010\Projects\Battleship\Battleship\bin
 C:\Users\student\Documents\Visual Studio 2010\Projects\Battleship\Battleship\bin\Debug\Battleship.pdb
 C:\Users\student\Documents\Visual Studio 2010\Projects\Battleship\Battleship\obj\x86\Debug\Battleship.exe
 C:\Users\student\Documents\Visual Studio 2010\Projects\Battleship\Battleship\obj\x86\Debug\Battleship.pdb
+C:\Users\student\Documents\Visual Studio 2010\Projects\Battleship\Battleship\obj\x86\Debug\Battleship.csprojResolveAssemblyReference.cache
