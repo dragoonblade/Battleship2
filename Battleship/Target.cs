@@ -22,7 +22,7 @@ namespace Battleship
             }
         }
 
-        public void calc(int[,] grid, int i, int j, int shots)
+        public int calc(int[,] grid, int i, int j, int shots)
         {
             prob[i,j]=-1;
             int h=1,n=grid[i,j];
@@ -171,6 +171,11 @@ namespace Battleship
                     sea[i, j] = 1;
                     h++;
                     shots++;
+                    Console.WriteLine("Shots = " + shots);
+                }
+                else if (sea[tx,ty] != -1)
+                {
+                    Console.WriteLine("WASTE");
                 }
                 else
                 {
@@ -179,6 +184,7 @@ namespace Battleship
                     shots++;
                     tx = i;
                     ty = j;
+                    Console.WriteLine("Shots = " + shots);
                 }
                 Console.WriteLine("tx = "+tx);
                 Console.WriteLine("ty = "+ty);
@@ -192,6 +198,7 @@ namespace Battleship
                 Console.WriteLine("4 destroyed");
             else if (h == 5)
                 Console.WriteLine("5 destroyed");
+            return shots;
         }
 
         public void calculateProbAround(int i,int j)

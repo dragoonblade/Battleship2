@@ -28,7 +28,7 @@ namespace Battleship
             Finder f = new Finder();
             Target t = new Target();
             int ships = 0;
-            while (ships != 1)
+            while (ships != 3)
             {
                 pd = p.density();
                 Console.WriteLine("Density");
@@ -41,11 +41,13 @@ namespace Battleship
                 value = f.select(t.sea);
                 int x = value[0];
                 int y = value[1];
+                Console.WriteLine("x = " + x);
+                Console.WriteLine("y = " + y);
 
                 if( t.sea[x,y] != -1)
                 {
-                    Console.WriteLine("x = " + x);
-                    Console.WriteLine("y = " + y);
+
+                    Console.WriteLine("WASTE");
                 }
 
                 else if (grid[x, y] == 0)
@@ -54,11 +56,11 @@ namespace Battleship
                     p.miss(x, y,t.sea);
                     t.sea[x, y] = 0;
                     shots++;
+                    Console.WriteLine("Shots = " + shots);
                 }
                 else
                 {
-                    shots++;
-                    t.calc(grid, x, y, shots);
+                    shots = t.calc(grid, x, y, shots);
                     ships++;
                 }
             }
