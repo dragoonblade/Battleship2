@@ -22,22 +22,12 @@ namespace Battleship
             }
         }
 
-        public void calc(int[,] grid, int i, int j)
+        public void calc(int[,] grid, int i, int j, int shots)
         {
-            //create prob array with all zeroes somewhere bro
             prob[i,j]=-1;
             int h=1,n=grid[i,j];
             int tx=i,ty=j;
             sea[i, j] = n;
-            Console.WriteLine("Sea Matrix");
-            for (int a = 0; a < 10; a++)
-            {
-                for (int b = 0; b < 10; b++)
-                {
-                    Console.Write(sea[a, b] + " ");
-                }
-                Console.WriteLine();
-            }
             while(h<n)
             {
                 if (sea[i, j] == 1)
@@ -180,22 +170,15 @@ namespace Battleship
                     sea[tx, ty] = grid[tx, ty];
                     sea[i, j] = 1;
                     h++;
+                    shots++;
                 }
                 else
                 {
+                    Console.WriteLine("MISS!!!");
                     sea[tx, ty] = grid[tx, ty];
-
+                    shots++;
                     tx = i;
                     ty = j;
-                }
-                Console.WriteLine("Sea Matrix");
-                for (int a = 0; a < 10; a++)
-                {
-                    for (int b = 0; b < 10; b++)
-                    {
-                        Console.Write(sea[a, b] + "\t");
-                    }
-                    Console.WriteLine();
                 }
                 Console.WriteLine("tx = "+tx);
                 Console.WriteLine("ty = "+ty);
@@ -368,15 +351,6 @@ namespace Battleship
                 prob[i + 2, j] = 1;
             }
 
-            Console.WriteLine("Hit Probability");
-            for (int a = 0; a < 10; a++)
-            {
-                for (int b = 0; b < 10; b++)
-                {
-                    Console.Write(prob[a, b] + "\t");
-                }
-                Console.WriteLine();
-            }
         }
     }
 }

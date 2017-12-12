@@ -8,10 +8,11 @@ namespace Battleship
 
     public class Program
     {
+        static int shots = 0;
         static void Main(string[] args)
         {
-            int[,] grid = {{2,2,0,0,0,0,0,4,0,0},
-                           {0,0,0,0,0,0,0,4,0,0},
+            int[,] grid = {{0,0,0,0,0,0,0,4,0,0},
+                           {0,2,2,0,0,0,0,4,0,0},
                            {0,0,3,0,0,0,0,4,0,0},
                            {0,0,3,0,0,0,0,4,0,0},
                            {0,0,3,0,0,0,0,0,0,0},
@@ -21,39 +22,48 @@ namespace Battleship
                            {0,0,0,0,0,0,3,3,3,0},
                            {0,0,0,0,0,0,0,0,0,0}};
 
+            float[] pd = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] value = new int[2];        
             Probability p = new Probability();
+            Finder f = new Finder();
             Target t = new Target();
-            Console.Write("Enter the x Coordinate: ");
-            int x = int.Parse(Console.ReadLine());
-            Console.Write("Enter the y Coordinate: ");
-            int y = int.Parse(Console.ReadLine());
+            int ships = 0;
+            while (ships != 1)
+            {
+                pd = p.density();
+                Console.WriteLine("Density");
+                for (int i = 0; i < 16; i++)
+                {
+                    Console.Write(pd[i] + " ");
+                } 
+                Console.WriteLine();
+                f.block(pd);
+                value = f.select(t.sea);
+                int x = value[0];
+                int y = value[1];
 
-            if (grid[x, y] == 0)
-            {
-                for (int i = 0; i < 10; i++)
+                if( t.sea[x,y] != -1)
                 {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        Console.Write(p.prob[i, j] + "\t");
-                    }
-                    Console.WriteLine();
+                    Console.WriteLine("x = " + x);
+                    Console.WriteLine("y = " + y);
                 }
-                p.miss(x, y);
-                t.sea[x, y] = 0;
-                Console.WriteLine("After Miss");
-                for (int i = 0; i < 10; i++)
+
+                else if (grid[x, y] == 0)
                 {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        Console.Write(p.prob[i, j] + "\t");
-                    }
-                    Console.WriteLine();
+                    Console.WriteLine("MISS!!!");
+                    p.miss(x, y,t.sea);
+                    t.sea[x, y] = 0;
+                    shots++;
+                }
+                else
+                {
+                    shots++;
+                    t.calc(grid, x, y, shots);
+                    ships++;
                 }
             }
-            else
-            {
-                t.calc(grid, x, y);
-            }
+            Console.WriteLine("Shots = " + shots);
+            Console.WriteLine("Ships = " + ships);
         }
     }
 }
