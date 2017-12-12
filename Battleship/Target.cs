@@ -36,29 +36,29 @@ namespace Battleship
                     if (tx != i)
                     {
                         j = ty;
-                        if (tx > i)
+                        if (tx < i)
                         {
                             i = tx;
-                            tx++;
+                            tx--;
                         }
                         else
                         {
                             i = tx;
-                            tx--;
+                            tx++;
                         }
                     }
                     else
                     {
                         i = tx;
-                        if (ty > j)
+                        if (ty < j)
+                        {
+                            j = ty;
+                            ty--; 
+                        }
+                        else if (ty > j)
                         {
                             j = ty;
                             ty++;
-                        }
-                        else
-                        {
-                            j = ty;
-                            ty--;
                         }
                     }
                 }

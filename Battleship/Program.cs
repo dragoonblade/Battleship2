@@ -11,24 +11,26 @@ namespace Battleship
         static int shots = 0;
         static void Main(string[] args)
         {
-            int[,] grid = {{0,0,0,0,0,0,0,4,0,0},
+            int[,] grid = {{0,0,0,0,0,0,0,0,0,0},
                            {0,2,2,0,0,0,0,4,0,0},
                            {0,0,3,0,0,0,0,4,0,0},
                            {0,0,3,0,0,0,0,4,0,0},
-                           {0,0,3,0,0,0,0,0,0,0},
+                           {0,0,3,0,0,0,0,4,0,0},
                            {0,0,0,0,0,0,0,0,0,0},
                            {0,5,5,5,5,5,0,0,0,0},
                            {0,0,0,0,0,0,0,0,0,0},
                            {0,0,0,0,0,0,3,3,3,0},
                            {0,0,0,0,0,0,0,0,0,0}};
-
+            
             float[] pd = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             int[] value = new int[2];        
             Probability p = new Probability();
             Finder f = new Finder();
             Target t = new Target();
+            Random rnd = new Random();
             int ships = 0;
-            while (ships != 3)
+            int c = 0;
+            while (ships != 5)
             {
                 pd = p.density();
                 Console.WriteLine("Density");
@@ -44,14 +46,22 @@ namespace Battleship
                 Console.WriteLine("x = " + x);
                 Console.WriteLine("y = " + y);
 
+                if (c > 3)
+                {
+                    c = 0;
+                    x = rnd.Next(0, 9);
+                    y = rnd.Next(0, 9);
+                }
+
                 if( t.sea[x,y] != -1)
                 {
-
+                    c++; Console.WriteLine("c = " + c );
                     Console.WriteLine("WASTE");
                 }
 
                 else if (grid[x, y] == 0)
                 {
+                    c = 0;
                     Console.WriteLine("MISS!!!");
                     p.miss(x, y,t.sea);
                     t.sea[x, y] = 0;
@@ -60,6 +70,7 @@ namespace Battleship
                 }
                 else
                 {
+                    c = 0;
                     shots = t.calc(grid, x, y, shots);
                     ships++;
                 }
