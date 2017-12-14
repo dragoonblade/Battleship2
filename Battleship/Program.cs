@@ -23,12 +23,12 @@ namespace Battleship
                            {0,0,0,0,0,0,0,0,0,0}};
             
             float[] pd = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            int[] number = new int[1000];
+            int[] number = new int[100];
             int[] value = new int[2];    
             int ships = 0;
             int c = 0;
             int count = 0;
-            while (count < 300)
+            while (count < 100)
             {
                 Probability p = new Probability();
                 Finder f = new Finder();
@@ -61,8 +61,7 @@ namespace Battleship
 
                     if (t.sea[x, y] != -1)
                     {
-                        c++; Console.WriteLine("c = " + c);
-                        Console.WriteLine("WASTE");
+                        c++; 
                     }
 
                     else if (grid[x, y] == 0)
@@ -87,9 +86,9 @@ namespace Battleship
                 count++;
             }
             Console.WriteLine("Number");
-            for (int i = 0; i < 300; i++)
+            for (int i = 0; i < 100; i++)
             {
-                Console.Write(number[i]+",");
+                Console.WriteLine(number[i]);
             }
             Console.WriteLine("Number");
         }

@@ -34,18 +34,15 @@ namespace Battleship
             {
                 if (i > 1)
                 {
-                    Console.WriteLine("i>1");
                     prob[i - 2, j] -= 1;
                     prob[i - 1, j] -= 2;
                 }
                 else if (i > 0)
                 {
-                    Console.WriteLine("i>0");
                     prob[i - 1, j] -= 1;
                 }
                 else
                 {
-                    Console.WriteLine("i=0");
                     prob[i + 1, j] -= 1;
                     prob[i + 2, j] -= 1;
                 }
@@ -55,18 +52,15 @@ namespace Battleship
             {
                 if (i < 8)
                 {
-                    Console.WriteLine("i<8");
                     prob[i + 2, j] -= 1;
                     prob[i + 1, j] -= 2;
                 }
                 else if (i < 9)
                 {
-                    Console.WriteLine("i<9");
                     prob[i + 1, j] -= 1;
                 }
                 else
                 {
-                    Console.WriteLine("i=9");
                     prob[i - 1, j] -= 1;
                     prob[i - 2, j] -= 1;
                 }
@@ -76,18 +70,15 @@ namespace Battleship
             {
                 if (j > 1)
                 {
-                    Console.WriteLine("j>1");
                     prob[i, j - 2] -= 1;
                     prob[i, j - 1] -= 2;
                 }
                 else if (j > 0)
                 {
-                    Console.WriteLine("j>0");
                     prob[i, j - 1] -= 1;
                 }
                 else
                 {
-                    Console.WriteLine("j=0");
                     prob[i, j + 1] -= 1;
                     prob[i, j + 2] -= 1;
                 }
@@ -97,18 +88,15 @@ namespace Battleship
             {
                 if (j < 8)
                 {
-                    Console.WriteLine("j<8");
                     prob[i, j + 2] -= 1;
                     prob[i, j + 1] -= 2;
                 }
                 else if (j < 9)
                 {
-                    Console.WriteLine("j<9");
                     prob[i, j + 1] -= 1;
                 }
                 else
                 {
-                    Console.WriteLine("j=9");
                     prob[i, j - 1] -= 1;
                     prob[i, j - 2] -= 1;
                 }

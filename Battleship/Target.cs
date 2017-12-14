@@ -32,7 +32,6 @@ namespace Battleship
             {
                 if (sea[i, j] == 1)
                 { 
-                    Console.WriteLine("Enter");
                     if (tx != i)
                     {
                         j = ty;
@@ -175,7 +174,6 @@ namespace Battleship
                 }
                 else if (sea[tx,ty] != -1)
                 {
-                    Console.WriteLine("WASTE");
                 }
                 else
                 {
